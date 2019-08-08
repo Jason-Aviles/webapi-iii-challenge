@@ -32,7 +32,8 @@ router.get('/:id/posts', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-
+  const {id} = req.params
+  DBuser.remove(id).then(user => res.status(203).json(user))
 });
 
 router.put('/:id', (req, res) => {
