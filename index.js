@@ -18,8 +18,7 @@ server.use(express.json());
 
 server.use(logger)
 
-server.use('/post',post)
-server.use('/users',user)
+
 
 
 
@@ -34,6 +33,7 @@ server.get('/', async (req, res) => {
   }
 });
 
-
+server.use('/post',post)
+server.use('/users',user)
 
 server.listen(port, () => console.log("connected"));
