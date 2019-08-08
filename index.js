@@ -1,7 +1,7 @@
 // code away!
 require('dotenv').config();
 const express = require("express");
-
+const cors = require("cors");
 const server = express();
 const port = process.env.PORT  || 5000;
 const db= require('./posts/postDb')
@@ -15,7 +15,7 @@ function logger(req, res, next) {
 }
 
 server.use(express.json());
-
+server.use(cors());
 server.use(logger)
 
 
