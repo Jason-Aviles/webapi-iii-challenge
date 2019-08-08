@@ -20,7 +20,9 @@ server.use(cors());
 server.use(logger)
 
 
-
+server.get("/", (req, res) => {
+  res.send("hello world");
+});
 
 
 // server.get('/', async (req, res) => {
