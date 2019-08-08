@@ -21,7 +21,7 @@ server.use(logger)
 
 
 server.get("/", (req, res) => {
-  res.send(process.env.MOTD);
+  res.send({message:process.env.MOTD});
 });
 
 
