@@ -7,6 +7,7 @@ const port = process.env.PORT  || 5000;
 const db= require('./posts/postDb')
 const user = require('./users/userRouter')
 const post = require('./posts/postRouter')
+
 function logger(req, res, next) {
   console.log(`
   [${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.get(
@@ -24,7 +25,7 @@ server.use(logger)
 
 server.get('/', async (req, res) => {
   try {
-    const shoutouts = await db('shoutouts');
+    const shoutouts = await db('users');
     const messageOfTheDay = process.env.MOTD || 'Hello World!'; // add this line
     res.status(200).json({ motd: messageOfTheDay, shoutouts }); // change this line
   } catch (error) {
