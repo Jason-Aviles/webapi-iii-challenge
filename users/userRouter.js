@@ -4,43 +4,43 @@ const router = express.Router();
 const DBuser = require('./userDb')
 
 
-router.post('/', (req, res) => {
+router.post('/',validatePost,validateUser, (req, res) => {
   const body = req.body;
-  DBuser.insert(body).then(user => res.status(201).json(user))
+  DBuser.insert(body).then(user => res.status(201).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 });
 
-router.post('/:id/posts', (req, res) => {
+router.post('/:id/posts',validatePost,validateUserId, (req, res) => {
   const body = req.body;
 
-  DBuser.insert(body).then(user => res.status(201).json(user))
+  DBuser.insert(body).then(user => res.status(201).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 
 });
 
 router.get('/', (req, res) => {
-DBuser.get().then(user => res.status(200).json(user))
+DBuser.get().then(user => res.status(200).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id',validateUserId, (req, res) => {
 const {id} = req.params
-DBuser.getById(id).then(user => res.status(200).json(user))
+DBuser.getById(id).then(user => res.status(200).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 
 });
 
-router.get('/:id/posts', (req, res) => {
+router.get('/:id/posts',validateUserId, (req, res) => {
   const {id} = req.params
-  DBuser.getUserPosts(id).then(user => res.status(200).json(user))
+  DBuser.getUserPosts(id).then(user => res.status(200).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',validateUserId, (req, res) => {
   const {id} = req.params
-  DBuser.remove(id).then(user => res.status(203).json(user))
+  DBuser.remove(id).then(user => res.status(203).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id',validateUserId,validatePost,validateUser, (req, res) => {
   const {id} = req.params
   const body = req.body;
 
-  DBuser.update(id,body).then(user => res.status(201).json(user))
+  DBuser.update(id,body).then(user => res.status(201).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 
 
 });
