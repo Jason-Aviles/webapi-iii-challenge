@@ -25,7 +25,7 @@ server.use(logger)
 
 server.get('/', async (req, res) => {
   try {
-    const shoutouts = await db('users');
+    const shoutouts = await db('posts');
     const messageOfTheDay = process.env.MOTD || 'Hello World!'; // add this line
     res.status(200).json({ motd: messageOfTheDay, shoutouts }); // change this line
   } catch (error) {
