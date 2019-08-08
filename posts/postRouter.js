@@ -21,7 +21,11 @@ router.put('/:id', (req, res) => {
 // custom middleware
 
 function validatePostId(req, res, next) {
-
+  const {id} = req.params;
+  if(!id){
+    res.status(400).json({ message: "invalid user id" })
+  }
+  else{next()}
 };
 
 module.exports = router;
