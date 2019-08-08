@@ -37,6 +37,11 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  const {id} = req.params
+  const body = req.body;
+
+  DBuser.update(id,body).then(user => res.status(201).json(user))
+
 
 });
 
