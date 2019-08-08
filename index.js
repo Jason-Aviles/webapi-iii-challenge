@@ -4,7 +4,7 @@ const express = require("express");
 
 const server = express();
 const port = process.env.PORT  || 5000;
-
+const db= require('./posts/postDb')
 const user = require('./users/userRouter')
 const post = require('./posts/postRouter')
 function logger(req, res, next) {
