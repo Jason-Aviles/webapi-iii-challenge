@@ -6,18 +6,18 @@ router.get('/', (req, res) => {
   DBpost.get().then(user => res.status(200).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id',validatePostId, (req, res) => {
   const {id} = req.params
   DBpost.getById(id).then(user => res.status(200).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
   
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',validatePostId, (req, res) => {
   const {id} = req.params
   DBpost.remove(id).then(user => res.status(203).json(user)).catch(err => res.status(500).json({message:'check your backend'}))
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id',validatePostId, (req, res) => {
   const {id} = req.params
   const body = req.body;
 
